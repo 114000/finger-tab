@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 import { TabRenderer } from '~/components'
 import { fetchStaff, Staff } from '~/data'
 export const Tab: FC<{}> = () => {
