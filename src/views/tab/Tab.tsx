@@ -14,7 +14,10 @@ export const Tab: FC<{}> = () => {
 
   return (
     <div className="flex-1 flex flex-col">
-      <h1>{ staff?.name }</h1>
+      <div className="max-w-7xl w-full mx-auto">
+        <h1 className="text-xl font-semibold">{ staff?.name }</h1>
+        <p>{ staff?.author }</p>
+      </div>
       { staff && <TabRenderer url={staff.url} /> }
     </div>
   )
