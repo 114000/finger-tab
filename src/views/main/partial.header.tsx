@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Icon } from '@iconify/react'
-import { CircleIconButton } from '~/components'
+import { CircleIconButton, Metronome } from '~/components'
 import { Link } from 'react-router-dom'
 export const Header: FC<{
   sidebarToggle: (on?: any) => void
@@ -23,6 +23,7 @@ export const Header: FC<{
               <Icon icon="carbon:menu" className="text-2xl no-outline" />
             </button>
 
+            <Metronome />
           </div>
 
           {/* Header: Right side */}
