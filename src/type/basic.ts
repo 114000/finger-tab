@@ -1,4 +1,4 @@
-export enum SourceNoteSizeType {
+export enum WideType {
   w = 0,
   wd = 0.5,
   h = 1,

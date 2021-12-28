@@ -1,5 +1,5 @@
 import { VoltaType } from 'vexflow'
-import { SourceNoteSizeType } from './basic'
+import { WideType } from './basic'
 
 export enum SourceNodeType {
   stave = 0,
@@ -40,5 +40,5 @@ export interface SourceStave extends Source {
 
 export interface SourceNote extends Source {
   k: string[],
-  s: SourceNoteSizeType
+  w: WideType
 }

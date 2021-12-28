@@ -27,11 +27,12 @@ export const Metronome: FC<IMetronomeProps> = ({
           {isRunning ? <Icon icon="el:pause-alt" /> : <Icon icon="el:play-alt" />}
         </div>
         {Array.from({ length: beat }).map((_, i) => (
-          <div className={
+          <div 
+            key={i}
+            className={
             `w-4 h-4 rounded-full 
             ${i === beatCount - 1 ? isBeat ? 'bg-red-500' : 'bg-gray-600' : 'bg-gray-400'}
-           `
-          } />
+            `} />
         ))}
       </div>
 

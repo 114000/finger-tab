@@ -1,9 +1,9 @@
-import { SourceNoteSizeType } from "./basic"
+import { WideType } from "./basic"
 
 export type NoteValue = {
   a: number
   v: NoteV,
-  size: SourceNoteSizeType
+  size: WideType
 }
 
 export type StaveValue = {
@@ -22,9 +22,9 @@ export enum NoteV {
   f = 6,
   g = 8,
   a = 10,
-  b = 12,
+  b = 12, // % 12 === 0
 
-  cb = 12,
+  cb = 12, // % 12 === 0
   db = 2,
   eb = 4,
   fb = 5,

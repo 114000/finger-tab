@@ -24,7 +24,7 @@ export const useRenderer = function (size: [number, number]) {
   useEffect(() => {
     if (!domRef.current) return
     if (!rendererRef.current) {
-      const renderer = new Renderer(domRef.current, Renderer.Backends.CANVAS)
+      const renderer = new Renderer(domRef.current, Renderer.Backends.SVG)
       renderer.resize(size[0], size[1])
       rendererRef.current = renderer
       const rendererContext = renderer.getContext()
@@ -35,7 +35,7 @@ export const useRenderer = function (size: [number, number]) {
   }, [domRef.current])
 
   const domMemo = useMemo(() => {
-    return <canvas ref={domRef}></canvas>
+    return <div ref={domRef}></div>
   }, [])
 
   return [domMemo, context] as [typeof domMemo, typeof context]
