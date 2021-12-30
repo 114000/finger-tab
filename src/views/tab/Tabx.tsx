@@ -1,16 +1,22 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { BarlineType, Beam, Formatter, Note, NoteStruct, Stave, StaveNote, TabNote, TabNoteStruct, TabStave, VoltaType } from 'vexflow'
+import { BarlineType, Beam, Formatter, Note, ElementStyle, Stave, StaveNote, TabNote, TabNoteStruct, TabStave, VoltaType } from 'vexflow'
 import { TabRenderer } from '~/components'
 import canonData from '~/data/canon.json'
 import { useRenderer } from '~/hooks'
 import { SourceNode, WideType, LayoutStave, SourceNodeType, SourceNote, SourceStave, SourceStaveType } from '~/type'
 import { noteWideMap, sourceToLayout, standardTuning, tabKeyToStaffKey } from '~/util'
 export const Tabx: FC<{}> = () => {
-
-  const [rendererDom, { rendererContext }] = useRenderer([window.innerWidth - 20, 1000])
-  const [hasStaff, setHasStaff] = useState(false)
-
+  const containerWidth = window.innerWidth - 50
+  const [rendererDom, { rendererContext }] = useRenderer([containerWidth + 1, 1000])
+  const [hasStaff, setHasStaff] = useState(true)
+  const [playBounding, setPlayBounding] = useState({
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0,
+  })
+  const intevalInterface = useRef(0)
   useEffect(() => {
     if (!rendererContext) return
     rendererContext.clear()
@@ -23,6 +29,40 @@ export const Tabx: FC<{}> = () => {
       rowMaxWide: containerWidth / 50,
       rowFirstAddWide: 1
     })
+
+    
+
+    clearInterval(intevalInterface.current)
+    let index = 0
+    let repeat = -1
+    intevalInterface.current = setInterval(() => {
+      const currentStave = staves[index]
+      if (repeat === index) {
+        repeat = -1
+      }
+      else if (currentStave.split === SourceStaveType.repeatStart) {
+        repeat = index
+      }
+
+      setPlayBounding({
+        left: currentStave.left * containerWidth,
+        top: currentStave.row * (hasStaff ? 200 : 100) + (hasStaff ? 30 : 40),
+        width: currentStave.width * containerWidth,
+        height: (hasStaff ? 160 : 80),
+      })
+
+      if (currentStave.split === SourceStaveType.repeatFinal && repeat !== -1) {
+        index = repeat
+      }
+      else {
+        index++
+        if (index > staves.length) {
+          clearInterval(intevalInterface.current)
+        }
+      }
+      
+      
+    }, 2000)
 
 
     // initialize
@@ -39,12 +79,13 @@ export const Tabx: FC<{}> = () => {
 
       if (st.col === 0) {
         tabStave.addClef('tab')
+        console.log('getAttributes', tabStave.getStyle())
       }
 
       if (idx === 0) {
         tabStave.addTimeSignature(timeSignature)
       }
-
+      // tabStave.setMeasure(idx)
       // console.log(st.split)
       if (st.split === SourceStaveType.repeatStart) {
         tabStave.setBegBarType(BarlineType.REPEAT_BEGIN)
@@ -156,7 +197,12 @@ export const Tabx: FC<{}> = () => {
         staff
       </label>
 
-      {rendererDom}
+      <div className="relative">
+        {rendererDom}
+        <div className="bg-red-500 absolute opacity-20 transition-all" style={playBounding}></div>
+      </div>
+
+      
     </div>
   )
 }
