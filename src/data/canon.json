@@ -1,6 +1,11 @@
 {
-  "timeSignature": "4/4",
-  "notes": [
+  "id": "canon",
+  "title": "Canon",
+  "author": "",
+  "publishDate": "",
+  "album": "",
+  "timeSignature": [4, 4],
+  "nodes": [
     { "t": 0, "split": 1 },
     { "t": 1, "w": 0, "k": ["3/5", "0/1"] },
     { "t": 0, "split": 1 },

@@ -1,0 +1,16 @@
+.editor-collaspe {
+  
+}
+
+.editor-collaspe-header {
+  @apply 
+    px-10 py-4 
+    border-gray-900 border-t border-solid 
+    select-none cursor-pointer;
+}
+
+.editor-collaspe-content {
+  @apply 
+  px-10 py-4 
+  border-gray-900 border-t border-solid;
+}

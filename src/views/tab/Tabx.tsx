@@ -22,8 +22,8 @@ export const Tabx: FC<{}> = () => {
     rendererContext.clear()
 
 
-    const nodes: SourceNode[] = canonData.notes
-    const timeSignature: string = canonData.timeSignature
+    const nodes: SourceNode[] = canonData.nodes
+    const timeSignature: string = canonData.timeSignature.join('/')
     const containerWidth = window.innerWidth - 50
     const { staves, rows } = sourceToLayout(nodes, {
       rowMaxWide: containerWidth / 50,

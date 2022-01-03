@@ -5,6 +5,7 @@ import { Signin } from '~/views/access'
 import { Main, List } from '~/views/main'
 import { Tab, Tabx } from '~/views/tab'
 import { Playground } from '~/views/playground'
+import { Editor } from './views/editor'
 
 export function App() {
 
@@ -18,6 +19,7 @@ export function App() {
               <Route exact path="/tab/:id" component={Tab} />
               <Route exact path="/tabx" component={Tabx} />
               <Route exact path="/playground" component={Playground} />
+              <Route exact path="/editor" component={Editor} />
               <Route path="/" component={List} />
               
             </Switch>

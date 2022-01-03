@@ -41,3 +41,7 @@ export enum NoteV {
   bu = 1
 }
 
+export interface PlainOption<T = string | number, K = any> {
+  name: T
+  value: K
+}

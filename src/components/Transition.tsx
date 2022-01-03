@@ -1,5 +1,6 @@
 export {}
 // import React, { useRef, useEffect, useContext } from 'react'
+// // @ts-ignore
 // import { CSSTransition as ReactCSSTransition } from 'react-transition-group'
 
 // const TransitionContext = React.createContext({
@@ -44,7 +45,7 @@ export {}
 //     classes.length && node.classList.remove(...classes);
 //   }
 
-//   const nodeRef = React.useRef(null);
+//   const nodeRef = React.useRef<Element>(null);
 //   const Component = tag;
 
 //   return (
@@ -54,7 +55,7 @@ export {}
 //       unmountOnExit={removeFromDom}
 //       in={show}
 //       addEndListener={(done: Function) => {
-//         nodeRef.current.addEventListener('transitionend', done, false)
+//         nodeRef.current?.addEventListener('transitionend', done, false)
 //       }}
 //       onEnter={() => {
 //         if (!removeFromDom) nodeRef.current.style.display = null;
